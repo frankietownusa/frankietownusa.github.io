@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>The 2022 Cubs Draft Class</title>
+    <meta charset="UTF-8">
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="cubssitecss.css">
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/leaflet.css">
+    <link rel="stylesheet" type="text/css" href="cubsitecss2.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+    <style>
+        /* main.css: Add and override styles */
+
+        html, body {
+			height: 100%;
+			margin: 0;
+		}
+		.leaflet-container {
+			height: 600px;
+			width: 800px;
+			max-width: 100%;
+			max-height: 100%;
+		}
+        body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333333;
+  background-color: #ffffff;
+}
+.dc-data-count small {
+    font-size: 16px;
+}
+
+.container-fluid {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.pie-chart {
+    height: 150px;
+}
+
+.dc-chart .axis text {
+    font-size: 12px;
+}
+
+text {
+    font-size: 16px;
+}
+
+#map {
+    height: 350px;
+    width: 750px;
+}
+
+#control-row {
+    padding-bottom: 20px;
+}
+
+a {
+    cursor: pointer
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- 1st row - map title  -->
+        <div class="row">
+            <div class="col-xs-12">
+                <h2><b>The 2022 Chicago Cubs Draft Class</b></h2>
+                <div class="row">
+                    <button type="button" class="btn btn-default info pull-right" data-toggle="modal" data-target="#myModal">About the project</button>
+                </div>
+
+                <!-- 2nd row - map -->
+                <div class="row">
+                    <div class="col-xs-8">
+                        <h3>
+                            Draft map</a>
+                        </h3>
+                        <div id="map"></div>
+                    </div>
+                    <div class="col-xs-4 pie-chart">
+                        <h3><br>Map directions</h3>
+                        <h5><ul>
+                            <li>Switch between using the <img src="layers.png" alt="layers"> panel</li><br>
+                            <li>Use the zoom feature on the left to zoom in or out. You can also click and drag on the map to move.</li><br>
+                            <li>Click on map icons for information</li><br>
+                            <li>Scroll down for charts and a table with all the picks.</li><br>
+                          </ul></h5>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <!-- 4th row - pie charts and bar charts -->
+                <div class="row" id="control-row">
+                    <div class="col-xs-4 pie-chart">
+                        <h3><b>School type</b></h3>
+                        <img src="schoolchart.jpg" width="400" height=auto>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <h3><b>Conference</b></h3>
+                        <img src="confchart.jpg" width="400" height=auto>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <h3><b>Position</b></h3>
+                        <img src="positionchart.jpg" width="400" height=auto>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+
+            </div>
+
+
+
+                <!-- 5th row - table -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-bordered table-striped" id="data-table">
+                            <thead>
+                                <tr class="header">
+                                    <th>Round</th>
+                                    <th>Pick</th>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>School</th>
+                                    <th>Birthday</th>
+                                    <th>B/T</th>
+                                    <th>Height</th>
+                                    <th>Weight</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>7</td>
+                                    <td><a href="https://www.baseball-reference.com/register/player.fcgi?id=horton000cad" target="_blank">Cade Horton</a></td>
+                                    <td>RHP</td>
+                                    <td>University of Oklahoma</td>
+                                    <td>8/20/01</td>
+                                    <td>R/R</td>
+                                    <td>6-1</td>
+                                    <td>211</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>2</td>
+                                    <td>47</td>
+                                    <td><a href="https://www.perfectgame.org/players/playerprofile.aspx?ID=492925" target="_blank">Jackson Ferris</a></td>
+                                    <td>LHP</td>
+                                    <td>IMG Academy (Fla.)</td>
+                                    <td>1/15/04</td>
+                                    <td>L/L</td>
+                                    <td>6-4</td>
+                                    <td>195</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>3</td>
+                                    <td>86</td>
+                                    <td><a href="https://www.perfectgame.org/players/playerprofile.aspx?ID=672332" target="_blank">Christopher Paciolla</a></td>
+                                    <td>Shortstop</td>
+                                    <td>Temecula Valley High School (Calif)</td>
+                                    <td>03/16/04</td>
+                                    <td>R/R</td>
+                                    <td>6-2</td>
+                                    <td>185</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>4</td>
+                                    <td>113</td>
+                                    <td><a href="https://www.perfectgame.org/players/playerprofile.aspx?ID=475246" target="_blank">Nazier Mulé</a></td>
+                                    <td>RHP</td>
+                                    <td>Passaic Tech High School (N.J.)</td>
+                                    <td>10/15/04</td>
+                                    <td>R/R</td>
+                                    <td>6-3</td>
+                                    <td>210</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>5</td>
+                                    <td>143</td>
+                                    <td><a href="https://www.baseball-reference.com/register/player.fcgi?id=birdse000bra" target="_blank">Brandon Birdsell</a></td>
+                                    <td>RHP</td>
+                                    <td>Texas Tech University</td>
+                                    <td>03/23/00</td>
+                                    <td>R/R</td>
+                                    <td>6-3</td>
+                                    <td>240</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>6</td>
+                                    <td>173</td>
+                                    <td><a href="https://www.baseball-reference.com/register/player.fcgi?id=frisch000wil" target="_blank">Will Frisch</a></td>
+                                    <td>RHP</td>
+                                    <td>Oregon State University</td>
+                                    <td></td>
+                                    <td>R/R</td>
+                                    <td>6-0</td>
+                                    <td>222</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>7</td>
+                                    <td>203</td>
+                                    <td><a href="https://www.baseball-reference.com/register/player.fcgi?id=hull--000nic" target="_blank">Nick Hull</a></td>
+                                    <td>RHP</td>
+                                    <td>Grand Canyon University (Ariz.)</td>
+                                    <td></td>
+                                    <td>R/R</td>
+                                    <td>6-0</td>
+                                    <td>205</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>8</td>
+                                    <td>233</td>
+                                    <td><a href="https://www.perfectgame.org/Players/Playerprofile.aspx?ID=687266" target="_blank">Mason McGwire</a></td>
+                                    <td>RHP</td>
+                                    <td>Capistrano Valley High School (Calif.)</td>
+                                    <td></td>
+                                    <td>R/R</td>
+                                    <td>6-4</td>
+                                    <td>190</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>9</td>
+                                    <td>263</td>
+                                    <td><a href="https://www.baseball-reference.com/register/player.fcgi?id=noland000con" target="_blank">Connor Noland</a></td>
+                                    <td>RHP</td>
+                                    <td>University of Arkansas</td>
+                                    <td></td>
+                                    <td>R/R</td>
+                                    <td>6-2</td>
+                                    <td>215</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>10</td>
+                                    <td>293</td>
+                                    <td><a href="https://www.baseball-reference.com/register/player.fcgi?id=mccull000bro" target="_blank">Brody McCullough</a></td>
+                                    <td>RHP</td>
+                                    <td>Wingate University (N.C.)</td>
+                                    <td></td>
+                                    <td>R/R</td>
+                                    <td>6-4</td>
+                                    <td>205</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>11</td>
+                                    <td>323</td>
+                                    <td><a href="https://www.baseball-reference.com/register/player.fcgi?id=norieg000bra" target="_blank">Branden Noriega</a></td>
+                                    <td>LHP</td>
+                                    <td>No school</td>
+                                    <td></td>
+                                    <td>L/L</td>
+                                    <td>6-2</td>
+                                    <td>180</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>12</td>
+                                    <td>353</td>
+                                    <td><a href="https://hillsboroughcc.prestosports.com/sports/bsb/2020-21/bios/peters_mathew_a9vb" target="_blank">Mathew Peters</a></td>
+                                    <td>RHP</td>
+                                    <td>Ivy Tech Fort Wayne (Ind.)</td>
+                                    <td></td>
+                                    <td>R/R</td>
+                                    <td>6-4</td>
+                                    <td>215</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>13</td>
+                                    <td>383</td>
+                                    <td><a href="https://www.perfectgame.org/players/playerprofile.aspx?ID=781840" target="_blank">Luis Rujano</a></td>
+                                    <td>RHP</td>
+                                    <td>Sunshine State Elite Academy (Fla.)</td>
+                                    <td></td>
+                                    <td>R/R</td>
+                                    <td>6-4</td>
+                                    <td>200</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>14</td>
+                                    <td>413</td>
+                                    <td><a href="https://www.baseball-reference.com/register/player.fcgi?id=marsha001sha" target="_blank">Shane Marshall</a></td>
+                                    <td>RHP</td>
+                                    <td>University of Georgia</td>
+                                    <td></td>
+                                    <td>R/R</td>
+                                    <td>6-4</td>
+                                    <td>210</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>15</td>
+                                    <td>443</td>
+                                    <td><a href="https://www.baseball-reference.com/register/player.fcgi?id=mcgear000hay" target="_blank">Haydn McGeary</a></td>
+                                    <td>Catcher</td>
+                                    <td>Colorado Mesa University</td>
+                                    <td></td>
+                                    <td>R/R</td>
+                                    <td>6-5</td>
+                                    <td>235</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>16</td>
+                                    <td>473</td>
+                                    <td><a href="https://www.perfectgame.org/players/playerprofile.aspx?ID=392948" target="_blank">JonPaul Wheat</a></td>
+                                    <td>RHP</td>
+                                    <td>Next Level Academy (Ala.)</td>
+                                    <td></td>
+                                    <td>R/R</td>
+                                    <td>6-5</td>
+                                    <td>185</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>17</td>
+                                    <td>503</td>
+                                    <td><a href="https://www.baseball-reference.com/register/player.fcgi?id=garrio000and" target="_blank">Andy Garriola</a></td>
+                                    <td>Outfielder</td>
+                                    <td>Old Dominion University</td>
+                                    <td></td>
+                                    <td>R/R</td>
+                                    <td>6-5</td>
+                                    <td>235</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>18</td>
+                                    <td>533</td>
+                                    <td><a href="https://www.baseball-reference.com/register/player.fcgi?id=brown-012gar" target="_blank">Garrett Brown</a></td>
+                                    <td>RHP</td>
+                                    <td>University of Georgia</td>
+                                    <td></td>
+                                    <td>L/R</td>
+                                    <td>6-7</td>
+                                    <td>218</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>19</td>
+                                    <td>563</td>
+                                    <td><a href="https://www.perfectgame.org/Players/Playerprofile.aspx?ID=733875" target="_blank">Brock Blatter</a></td>
+                                    <td>RHP</td>
+                                    <td>Billings Central Catholic High School (Mont.)</td>
+                                    <td></td>
+                                    <td>R/R</td>
+                                    <td>6-6</td>
+                                    <td>215</td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>20</td>
+                                    <td>593</td>
+                                    <td><a href="https://www.mcceagles.com/sports/bsb/2020-21/bios/collier_ke-shun_dt82" target="_blank">KeShun Collier</a></td>
+                                    <td>Outfielder</td>
+                                    <td>Meridian Community College (Miss.)</td>
+                                    <td></td>
+                                    <td>L/R</td>
+                                    <td>5-8</td>
+                                    <td>160</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+            <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+            <script src="https://d3js.org/d3.v4.js"></script>
+            <script type="text/javascript" src="cubjquery.js"></script>
+            <script type="text/javascript" src="cubjs.js"></script>
+            <script>
+
+                //all draftees
+	var draftees = L.layerGroup();
+
+var Horton = L.marker([35.2059, -97.4457]).bindPopup('<b>Player:</b> Cade Horton<br><b>School:</b> University of Oklahoma</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 1<br><b>Overall pick:</b> 7').addTo(draftees);
+var Ferris = L.marker([27.4409, -82.6087]).bindPopup('<b>Player:</b> Jackson Ferris<br><b>School:</b> IMG Academy (Fla.)</b><br><b>Position: </b>Lefthand pitcer<br><b>Round:</b> 2<br><b>Overall pick:</b> 47').addTo(draftees);
+var Paciolla = L.marker([33.5025, -117.1168]).bindPopup('<b>Player:</b> Christopher Paciolla<br><b>School:</b> Temecula Valley High School (Calif.)</b><br><b>Position: </b>Shortstop<br><b>Round:</b> 3<br><b>Overall pick:</b> 86').addTo(draftees);
+var Mule = L.marker([40.9306, -74.2023]).bindPopup('<b>Player:</b> Nazier Mulé<br><b>School:</b> Passaic Tech High School (N.J.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 4<br><b>Overall pick:</b> 113').addTo(draftees);
+var Birdsell = L.marker([33.5843, -101.8783]).bindPopup('<b>Player:</b> Brandon Birdsell<br><b>School:</b> Texas Tech University</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 5<br><b>Overall pick:</b> 143').addTo(draftees);
+var Frisch = L.marker([44.5638, -123.2794]).bindPopup('<b>Player:</b> Will Frisch<br><b>School:</b> Oregon State University</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 6<br><b>Overall pick:</b> 173').addTo(draftees);
+var Hull = L.marker([33.5100, -112.1289]).bindPopup('<b>Player:</b> Nick Hull<br><b>School:</b> Grand Canyon University (Ariz.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 7<br><b>Overall pick:</b> 203').addTo(draftees);
+var McGwire = L.marker([33.5415, -117.6698]).bindPopup('<b>Player:</b> Mason McGwire<br><b>School:</b> Capistrano Valley High School (Calif.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 8<br><b>Overall pick:</b> 233').addTo(draftees);
+var Noland = L.marker([36.0687, -94.1748]).bindPopup('<b>Player:</b> Connor Noland<br><b>School:</b> University of Arkansas</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 9<br><b>Overall pick:</b> 263').addTo(draftees);
+var McCullough = L.marker([34.9843, -80.4492]).bindPopup('<b>Player:</b> Brody McCullough<br><b>School:</b> Wingate University (N.C.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 10<br><b>Overall pick:</b> 293').addTo(draftees);
+var Noriega = L.marker([25.7617, -80.1918]).bindPopup('<b>Player:</b> Branden Noriega<br><b>School:</b> No school</b><br><b>Position: </b>Lefthand pitcher<br><b>Round:</b> 11<br><b>Overall pick:</b> 323').addTo(draftees);
+var Peters = L.marker([41.1123, -85.1118]).bindPopup('<b>Player:</b> Mathew Peters<br><b>School:</b> Ivy Tech Fort Wayne (Ind.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 12<br><b>Overall pick:</b> 353').addTo(draftees);
+var Rujano = L.marker([28.2920, -81.4076]).bindPopup('<b>Player:</b> Luis Rujano<br><b>School:</b>Sunshine State Elite Academy (Fla.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 13<br><b>Overall pick:</b> 383').addTo(draftees);
+var Marshall = L.marker([33.9480, -83.3773]).bindPopup('<b>Player:</b> Shane Marshall<br><b>School:</b> University of Georgia</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 14<br><b>Overall pick:</b> 413').addTo(draftees);
+var McGeary = L.marker([39.0805, -108.5534]).bindPopup('<b>Player:</b> Haydn McGeary<br><b>School:</b> Colorado Mesa University</b><br><b>Position: </b>Catcher<br><b>Round:</b> 15<br><b>Overall pick:</b> 443').addTo(draftees);
+var Wheat = L.marker([32.4368, -86.1073]).bindPopup('<b>Player:</b> JonPaul Wheat<br><b>School:</b> Next Level Academy (Ala.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 16<br><b>Overall pick:</b> 473').addTo(draftees);
+var Garriola = L.marker([36.8853, -76.3059]).bindPopup('<b>Player:</b> Andy Garriola<br><b>School:</b> Old Dominion University</b><br><b>Position: </b>Outfielder<br><b>Round:</b> 17<br><b>Overall pick:</b> 503').addTo(draftees);
+var Brown = L.marker([33.9480, -83.3773]).bindPopup('<b>Player:</b> Garrett Brown<br><b>School:</b> University of Georgia</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 18<br><b>Overall pick:</b> 533').addTo(draftees);
+var Blatter = L.marker([45.7777, -108.5159]).bindPopup('<b>Player:</b> Brock Blatter<br><b>School:</b> Billings Central Catholic High School (Mont.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 19<br><b>Overall pick:</b> 563').addTo(draftees);
+var Collier = L.marker([32.3677, -88.7319]).bindPopup('<b>Player:</b> KeShun Collier<br><b>School:</b> Meridian Community College (Miss.)</b><br><b>Position: </b>Outfielder<br><b>Round:</b> 20<br><b>Overall pick:</b> 593').addTo(draftees);
+
+//position players group
+var position = L.layerGroup();
+var Paciolla = L.marker([33.5025, -117.1168]).bindPopup('<b>Player:</b> Christopher Paciolla<br><b>School:</b> Temecula Valley High School (Calif.)</b><br><b>Position: </b>Shortstop<br><b>Round:</b> 3<br><b>Overall pick:</b> 86').addTo(position);
+var McGeary = L.marker([39.0805, -108.5534]).bindPopup('<b>Player:</b> Haydn McGeary<br><b>School:</b> Colorado Mesa University</b><br><b>Position: </b>Catcher<br><b>Round:</b> 15<br><b>Overall pick:</b> 443').addTo(position);
+var Garriola = L.marker([36.8853, -76.3059]).bindPopup('<b>Player:</b> Andy Garriola<br><b>School:</b> Old Dominion University</b><br><b>Position: </b>Outfielder<br><b>Round:</b> 17<br><b>Overall pick:</b> 503').addTo(position);
+var Collier = L.marker([32.3677, -88.7319]).bindPopup('<b>Player:</b> KeShun Collier<br><b>School:</b> Meridian Community College (Miss.)</b><br><b>Position: </b>Outfielder<br><b>Round:</b> 20<br><b>Overall pick:</b> 593').addTo(position);
+
+//pitchers group
+var pitchers = L.layerGroup();
+var Horton = L.marker([35.2059, -97.4457]).bindPopup('<b>Player:</b> Cade Horton<br><b>School:</b> University of Oklahoma</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 1<br><b>Overall pick:</b> 7').addTo(pitchers);
+var Ferris = L.marker([27.4409, -82.6087]).bindPopup('<b>Player:</b> Jackson Ferris<br><b>School:</b> IMG Academy (Fla.)</b><br><b>Position: </b>Lefthand pitcer<br><b>Round:</b> 2<br><b>Overall pick:</b> 47').addTo(pitchers);
+var Mule = L.marker([40.9306, -74.2023]).bindPopup('<b>Player:</b> Nazier Mulé<br><b>School:</b> Passaic Tech High School (N.J.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 4<br><b>Overall pick:</b> 113').addTo(pitchers);
+var Birdsell = L.marker([33.5843, -101.8783]).bindPopup('<b>Player:</b> Brandon Birdsell<br><b>School:</b> Texas Tech University</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 5<br><b>Overall pick:</b> 143').addTo(pitchers);
+var Frisch = L.marker([44.5638, -123.2794]).bindPopup('<b>Player:</b> Will Frisch<br><b>School:</b> Oregon State University</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 6<br><b>Overall pick:</b> 173').addTo(pitchers);
+var Hull = L.marker([33.5100, -112.1289]).bindPopup('<b>Player:</b> Nick Hull<br><b>School:</b> Grand Canyon University (Ariz.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 7<br><b>Overall pick:</b> 203').addTo(pitchers);
+var McGwire = L.marker([33.5415, -117.6698]).bindPopup('<b>Player:</b> Mason McGwire<br><b>School:</b> Capistrano Valley High School (Calif.)</b><br><b>Position:</b> Righthand pitcher<br><b>Round:</b> 8<br><b>Overall pick:</b> 233').addTo(pitchers);
+var Noland = L.marker([36.0687, -94.1748]).bindPopup('<b>Player:</b> Connor Noland<br><b>School:</b> University of Arkansas</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 9<br><b>Overall pick:</b> 263').addTo(pitchers);
+var McCullough = L.marker([34.9843, -80.4492]).bindPopup('<b>Player:</b> Brody McCullough<br><b>School:</b> Wingate University (N.C.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 10<br><b>Overall pick:</b> 293').addTo(pitchers);
+var Noriega = L.marker([25.7617, -80.1918]).bindPopup('<b>Player:</b> Branden Noriega<br><b>School:</b> No school</b><br><b>Position: </b>Lefthand pitcher<br><b>Round:</b> 11<br><b>Overall pick:</b> 323').addTo(pitchers);
+var Peters = L.marker([41.1123, -85.1118]).bindPopup('<b>Player:</b> Mathew Peters<br><b>School:</b> Ivy Tech Fort Wayne (Ind.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 12<br><b>Overall pick:</b> 353').addTo(pitchers);
+var Rujano = L.marker([28.2920, -81.4076]).bindPopup('<b>Player:</b> Luis Rujano<br><b>School:</b>Sunshine State Elite Academy (Fla.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 13<br><b>Overall pick:</b> 383').addTo(pitchers);
+var Marshall = L.marker([33.9480, -83.3773]).bindPopup('<b>Player:</b> Shane Marshall<br><b>School:</b> University of Georgia</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 14<br><b>Overall pick:</b> 413').addTo(pitchers);
+var Wheat = L.marker([32.4368, -86.1073]).bindPopup('<b>Player:</b> JonPaul Wheat<br><b>School:</b> Next Level Academy (Ala.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 16<br><b>Overall pick:</b> 473').addTo(pitchers);
+var Brown = L.marker([33.9480, -83.3773]).bindPopup('<b>Player:</b> Garrett Brown<br><b>School:</b> University of Georgia</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 18<br><b>Overall pick:</b> 533').addTo(pitchers);
+var Blatter = L.marker([45.7777, -108.5159]).bindPopup('<b>Player:</b> Brock Blatter<br><b>School:</b> Billings Central Catholic High School (Mont.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 19<br><b>Overall pick:</b> 563').addTo(pitchers);
+
+//var round10 = L.layerGroup();
+
+var university = L.layerGroup();
+var Horton = L.marker([35.2059, -97.4457]).bindPopup('<b>Player:</b> Cade Horton<br><b>School:</b> University of Oklahoma</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 1<br><b>Overall pick:</b> 7').addTo(university);
+var Birdsell = L.marker([33.5843, -101.8783]).bindPopup('<b>Player:</b> Brandon Birdsell<br><b>School:</b> Texas Tech University</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 5<br><b>Overall pick:</b> 143').addTo(university);
+var Frisch = L.marker([44.5638, -123.2794]).bindPopup('<b>Player:</b> Will Frisch<br><b>School:</b> Oregon State University</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 6<br><b>Overall pick:</b> 173').addTo(university);
+var Hull = L.marker([33.5100, -112.1289]).bindPopup('<b>Player:</b> Nick Hull<br><b>School:</b> Grand Canyon University (Ariz.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 7<br><b>Overall pick:</b> 203').addTo(university);
+var Noland = L.marker([36.0687, -94.1748]).bindPopup('<b>Player:</b> Connor Noland<br><b>School:</b> University of Arkansas</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 9<br><b>Overall pick:</b> 263').addTo(university);
+var McCullough = L.marker([34.9843, -80.4492]).bindPopup('<b>Player:</b> Brody McCullough<br><b>School:</b> Wingate University (N.C.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 10<br><b>Overall pick:</b> 293').addTo(university);
+var McGeary = L.marker([39.0805, -108.5534]).bindPopup('<b>Player:</b> Haydn McGeary<br><b>School:</b> Colorado Mesa University</b><br><b>Position: </b>Catcher<br><b>Round:</b> 15<br><b>Overall pick:</b> 443').addTo(university);
+var Brown = L.marker([33.9480, -83.3773]).bindPopup('<b>Player:</b> Garrett Brown<br><b>School:</b> University of Georgia</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 18<br><b>Overall pick:</b> 533').addTo(university);
+
+var juco = L.layerGroup();
+var Collier = L.marker([32.3677, -88.7319]).bindPopup('<b>Player:</b> KeShun Collier<br><b>School:</b> Meridian Community College (Miss.)</b><br><b>Position: </b>Outfielder<br><b>Round:</b> 20<br><b>Overall pick:</b> 593').addTo(juco);
+var Peters = L.marker([41.1123, -85.1118]).bindPopup('<b>Player:</b> Mathew Peters<br><b>School:</b> Ivy Tech Fort Wayne (Ind.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 12<br><b>Overall pick:</b> 353').addTo(juco);
+
+var highschool = L.layerGroup();
+var Ferris = L.marker([27.4409, -82.6087]).bindPopup('<b>Player:</b> Jackson Ferris<br><b>School:</b> IMG Academy (Fla.)</b><br><b>Position: </b>Lefthand pitcer<br><b>Round:</b> 2<br><b>Overall pick:</b> 47').addTo(highschool);
+var Paciolla = L.marker([33.5025, -117.1168]).bindPopup('<b>Player:</b> Christopher Paciolla<br><b>School:</b> Temecula Valley High School (Calif.)</b><br><b>Position: </b>Shortstop<br><b>Round:</b> 3<br><b>Overall pick:</b> 86').addTo(highschool);
+var Mule = L.marker([40.9306, -74.2023]).bindPopup('<b>Player:</b> Nazier Mulé<br><b>School:</b> Passaic Tech High School (N.J.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 4<br><b>Overall pick:</b> 113').addTo(highschool);
+var McGwire = L.marker([33.5415, -117.6698]).bindPopup('<b>Player:</b> Mason McGwire<br><b>School:</b> Capistrano Valley High School (Calif.)</b><br><b>Position:</b> Righthand pitcher<br><b>Round:</b> 8<br><b>Overall pick:</b> 233').addTo(highschool);
+var Rujano = L.marker([28.2920, -81.4076]).bindPopup('<b>Player:</b> Luis Rujano<br><b>School:</b>Sunshine State Elite Academy (Fla.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 13<br><b>Overall pick:</b> 383').addTo(highschool);
+var Wheat = L.marker([32.4368, -86.1073]).bindPopup('<b>Player:</b> JonPaul Wheat<br><b>School:</b> Next Level Academy (Ala.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 16<br><b>Overall pick:</b> 473').addTo(highschool);
+var Blatter = L.marker([45.7777, -108.5159]).bindPopup('<b>Player:</b> Brock Blatter<br><b>School:</b> Billings Central Catholic High School (Mont.)</b><br><b>Position: </b>Righthand pitcher<br><b>Round:</b> 19<br><b>Overall pick:</b> 563').addTo(highschool);
+
+
+var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
+var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+});
+
+var map = L.map('map', {
+    center: [37.8, -96],
+    zoom: 4,
+    layers: [osm, draftees, position, pitchers]
+});
+
+var overlays = {
+    'Draftees': draftees,
+    'Position players': position,
+    'Pitchers': pitchers,
+    'University': university,
+    'Community college': juco,
+    'High School': highschool
+};
+
+var layerControl = L.control.layers(overlays).addTo(map);
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+            </script>
+
+            <!-- Model code begin -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">About this application</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p><strong>About the Project:</strong> 
+                                  I made this because I was bored one Tuesday night and because it's summer break and I have nothing better to do and also I like 
+                                  baseball and making web applications. I'd like this to be a living project, so check back for updates. It's always gonna be in a 
+                                  state of "unfinishedness." Follow me on Twitter if you'd like <a href="https://twitter.com/frankietownusa" target="_blank">@frankietownusa</a>. 
+
+                                </p>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Model compoent end  -->
+
+</body>
+
+</html>
